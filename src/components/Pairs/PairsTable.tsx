@@ -18,14 +18,17 @@ export const PairsTable: FC<PairsTableProps> = ({ pairs, isStandings = false }) 
                     <Table.Th>Pair Number</Table.Th>
                     <Table.Th>Player 1</Table.Th>
                     <Table.Th>Player 2</Table.Th>
-                    <Table.Th>Point Differential</Table.Th>
-                    <Table.Th>Wins</Table.Th>
+
                     {
-                        !isStandings &&
-                        <>
-                            <Table.Th>Has Paid</Table.Th>
-                            <Table.Th></Table.Th>
-                        </>
+                        !isStandings ?
+                            <>
+                                <Table.Th>Has Paid</Table.Th>
+                                <Table.Th></Table.Th>
+                            </> :
+                            <>
+                                <Table.Th>Point Differential</Table.Th>
+                                <Table.Th>Wins</Table.Th>
+                            </>
                     }
                 </Table.Tr>
             </Table.Thead>

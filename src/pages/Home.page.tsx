@@ -3,8 +3,15 @@ import { PairsPage } from './Pairs.page';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 import { MatchUpsPage } from './MatchUps.page';
 import { StandingsPage } from './Standings.page';
+import { useLocalStorage } from '@mantine/hooks';
+import { Pair } from '@/components/Pairs/Pair';
 
 export function HomePage() {
+  const [pairs] = useLocalStorage<Pair[]>({
+    key: 'pairs',
+    defaultValue: [],
+  });
+
   return (
     <Flex direction='column' gap='md' p='md'>
       <ColorSchemeToggle />
@@ -14,8 +21,8 @@ export function HomePage() {
       <Tabs defaultValue="pairs">
         <Tabs.List>
           <Tabs.Tab value="pairs">Pairs</Tabs.Tab>
-          <Tabs.Tab value="matchUps">Match-Ups</Tabs.Tab>
-          <Tabs.Tab value="standings">Standings</Tabs.Tab>
+          <Tabs.Tab disabled={pairs.length <= 16} value="matchUps">Match-Ups</Tabs.Tab>
+          <Tabs.Tab disabled={pairs.length <= 16} value="standings">Standings</Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="pairs">

@@ -11,10 +11,19 @@ export const PairActionBar: FC = () => {
     const { register, handleSubmit, getValues, reset } = useForm()
     const [pairs, setPairs] = useLocalStorage<Pair[]>({
         key: 'pairs',
+        defaultValue: [],
+    });
+    const [standings, setStandings] = useLocalStorage<Pair[]>({
+        key: 'standings',
+        defaultValue: [],
     });
     const [_, setMatchUps] = useLocalStorage<MatchUp[]>({
         key: 'matchUps',
         defaultValue: [],
+    });
+    const [isRoundTwo, setIsRoundTwo] = useLocalStorage<boolean>({
+        key: 'isRoundTwo',
+        defaultValue: false,
     });
 
     const addPairSubmit = () => {
@@ -55,6 +64,8 @@ export const PairActionBar: FC = () => {
                     <Button variant="filled" color="red" onClick={() => {
                         setPairs([]);
                         setMatchUps([]);
+                        setStandings([])
+                        setIsRoundTwo(false);
                         close();
                     }}>Reset</Button>
                 </Flex>

@@ -12,10 +12,6 @@ export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
         key: 'matchUps',
         defaultValue: [],
     });
-    const [pairs, setPairs] = useLocalStorage<Pair[]>({
-        key: 'pairs',
-        defaultValue: [],
-    });
 
     const updateMatchUp = (score: number, teamLabel: string) => {
         setMatchUps(matchUps.map(m => m === matchUp ? { ...m, [teamLabel]: score } : m));

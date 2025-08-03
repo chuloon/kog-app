@@ -9,9 +9,17 @@ export const StandingsActionBar: FC = () => {
         key: 'pairs',
         defaultValue: [],
     });
-    const [matchUps] = useLocalStorage<MatchUp[]>({
+    const [matchUps, setMatchUps] = useLocalStorage<MatchUp[]>({
         key: 'matchUps',
         defaultValue: [],
+    });
+    const [standings, setStandings] = useLocalStorage<Pair[]>({
+        key: 'standings',
+        defaultValue: [],
+    });
+    const [isRoundTwo, setIsRoundTwo] = useLocalStorage<boolean>({
+        key: 'isRoundTwo',
+        defaultValue: false,
     });
 
     const resetStandings = () => {
@@ -56,16 +64,25 @@ export const StandingsActionBar: FC = () => {
             return b.cumulativeWins - a.cumulativeWins; // Sort by wins if point diff is equal
         })
 
-        setPairs(sortedPairs)
+        setStandings(sortedPairs)
     }
 
     const startRoundTwo = () => {
+        setPairs(standings.map((pair, index) => ({
+            ...pair,
+            pairNumber: index + 1, // Reset pair numbers for round two
+        })
+        ))
+
+        setMatchUps([])
+        setStandings([]); // Clear standings for the next round
+        setIsRoundTwo(true);
     }
 
     return (
         <Flex justify="flex-end" gap="md">
             <Button variant='filled' onClick={calculatePairStandings}>Calculate</Button>
-            <Button variant='outline' onClick={startRoundTwo} disabled={pairs.length < 19}>Start Round 2</Button>
+            {!isRoundTwo && <Button variant='outline' onClick={startRoundTwo} disabled={pairs.length < 19}>Start Round 2</Button>}
         </Flex>
     )
 }
