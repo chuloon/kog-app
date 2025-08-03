@@ -1,16 +1,17 @@
-import { Flex, Table } from "@mantine/core"
+import { Flex, Table, Title } from "@mantine/core"
 import { FC } from "react"
 import { MatchUp } from "./MatchUp"
+import { CourtRow } from "./CourtRow"
 
 interface CourtProps {
     title: string
     matchUps: MatchUp[]
 }
-export const Court: FC<CourtProps> = ({ title }) => {
+export const Court: FC<CourtProps> = ({ title, matchUps }) => {
     return (
-        <Flex direction="column" gap="md" p="md" align="center">
-            <h2>{title}</h2>
-            <Table striped>
+        <Flex direction="column" p="md" align="center">
+            <Title order={2}>{title}</Title>
+            <Table>
                 <Table.Thead>
                     <Table.Tr>
                         <Table.Th>Round #</Table.Th>
@@ -25,7 +26,9 @@ export const Court: FC<CourtProps> = ({ title }) => {
                 </Table.Thead>
                 <Table.Tbody>
                     {
-
+                        matchUps.map((matchUp, index) => (
+                            <CourtRow key={index} matchUp={matchUp} />
+                        ))
                     }
                 </Table.Tbody>
             </Table>

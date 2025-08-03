@@ -1,14 +1,26 @@
+import { MatchUpData } from "@/assets/MatchUpData";
 import { Court } from "@/components/MatchUps/Court";
 import { MatchUp } from "@/components/MatchUps/MatchUp";
 import { Flex } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 export const MatchUpsPage: FC = () => {
-    const [matchUps] = useLocalStorage<MatchUp[]>({
+    const [pairs] = useLocalStorage({
+        key: 'pairs',
+        defaultValue: [],
+    });
+    const [matchUps, setMatchUps] = useLocalStorage<MatchUp[]>({
         key: 'matchUps',
         defaultValue: [],
     });
+
+    useEffect(() => {
+        if (pairs.length >= 16) {
+            const matchUpData = MatchUpData.find(data => data.numberOfPairs === pairs.length)
+            if (matchUpData) setMatchUps(matchUpData.matchUps)
+        }
+    }, [pairs])
 
     const getCourtMatchUps = (courtNumber: number) => {
         return matchUps.filter(matchUp => matchUp.courtNumber === courtNumber);
