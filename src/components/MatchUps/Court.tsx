@@ -28,7 +28,9 @@ export const Court: FC<CourtProps> = ({ title, matchUps }) => {
                     {
                         matchUps.map((matchUp, index) => (
                             <CourtRow key={index} matchUp={matchUp} />
-                        ))
+                        )).sort((a, b) => {
+                            return a.props.matchUp.roundNumber - b.props.matchUp.roundNumber
+                        })
                     }
                 </Table.Tbody>
             </Table>

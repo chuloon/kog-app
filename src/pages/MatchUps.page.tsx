@@ -16,7 +16,7 @@ export const MatchUpsPage: FC = () => {
     });
 
     useEffect(() => {
-        if (pairs.length >= 16) {
+        if (pairs.length >= 16 && matchUps.length === 0) {
             const matchUpData = MatchUpData.find(data => data.numberOfPairs === pairs.length)
             if (matchUpData) setMatchUps(matchUpData.matchUps)
         }

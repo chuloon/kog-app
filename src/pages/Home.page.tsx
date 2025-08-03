@@ -2,6 +2,7 @@ import { Center, Flex, Tabs, Title } from '@mantine/core';
 import { PairsPage } from './Pairs.page';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 import { MatchUpsPage } from './MatchUps.page';
+import { StandingsPage } from './Standings.page';
 
 export function HomePage() {
   return (
@@ -24,7 +25,7 @@ export function HomePage() {
           <MatchUpsPage />
         </Tabs.Panel>
         <Tabs.Panel value="standings">
-          Standings Content
+          <StandingsPage />
         </Tabs.Panel>
       </Tabs>
     </Flex>

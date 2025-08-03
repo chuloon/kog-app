@@ -1,13 +1,25 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { MatchUp } from "./MatchUp";
 import { Table, TextInput } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
+import { Pair } from "../Pairs/Pair";
 
 interface CourtRowProps {
     matchUp: MatchUp
 }
 export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
-    const [pair1Score, setPair1Score] = useState(matchUp.team1Score);
-    const [pair2Score, setPair2Score] = useState(matchUp.team2Score);
+    const [matchUps, setMatchUps] = useLocalStorage<MatchUp[]>({
+        key: 'matchUps',
+        defaultValue: [],
+    });
+    const [pairs, setPairs] = useLocalStorage<Pair[]>({
+        key: 'pairs',
+        defaultValue: [],
+    });
+
+    const updateMatchUp = (score: number, teamLabel: string) => {
+        setMatchUps(matchUps.map(m => m === matchUp ? { ...m, [teamLabel]: score } : m));
+    }
 
     return (
         <Table.Tr key={`court-${matchUp.courtNumber}-round-${matchUp.roundNumber}`}>
@@ -16,8 +28,8 @@ export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
             <Table.Td>{matchUp.pair2 != -1 ? matchUp.pair2 : 'BYE'}</Table.Td>
             <Table.Td>
                 <TextInput
-                    value={pair1Score}
-                    onChange={(e) => setPair1Score(Number(e.currentTarget.value))}
+                    value={matchUp.team1Score}
+                    onChange={(e) => updateMatchUp(Number(e.currentTarget.value), 'team1Score')}
                     placeholder="Team 1 Score"
                     disabled={matchUp.pair1 === -1 || matchUp.pair2 === -1}
                 />
@@ -27,8 +39,8 @@ export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
             <Table.Td>{matchUp.pair4 != -1 ? matchUp.pair4 : 'BYE'}</Table.Td>
             <Table.Td>
                 <TextInput
-                    value={pair2Score}
-                    onChange={(e) => setPair2Score(Number(e.currentTarget.value))}
+                    value={matchUp.team2Score}
+                    onChange={(e) => updateMatchUp(Number(e.currentTarget.value), 'team2Score')}
                     placeholder="Team 2 Score"
                     disabled={matchUp.pair3 === -1 || matchUp.pair4 === -1}
                 /></Table.Td>

@@ -25,6 +25,7 @@ const createMatchUp = (
 export const MatchUpData = [
     {
         numberOfPairs: 16,
+        hasTwoRounds: false,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -78,6 +79,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 17,
+        hasTwoRounds: false,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -137,6 +139,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 18,
+        hasTwoRounds: false,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -198,6 +201,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 19,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -238,6 +242,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 20,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -280,6 +285,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 21,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -322,6 +328,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 22,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 2, 3, 4, 1, 1),
@@ -366,6 +373,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 23,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(1, 6, 2, 5, 1, 1),
@@ -414,6 +422,7 @@ export const MatchUpData = [
     },
     {
         numberOfPairs: 24,
+        hasTwoRounds: true,
         matchUps: [
             //#region COURT 1
             createMatchUp(17, 18, 19, 20, 1, 1),
