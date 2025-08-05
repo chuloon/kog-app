@@ -21,8 +21,8 @@ export function HomePage() {
       <Tabs defaultValue="pairs">
         <Tabs.List>
           <Tabs.Tab value="pairs">Pairs</Tabs.Tab>
-          <Tabs.Tab disabled={pairs.length <= 16} value="matchUps">Match-Ups</Tabs.Tab>
-          <Tabs.Tab disabled={pairs.length <= 16} value="standings">Standings</Tabs.Tab>
+          <Tabs.Tab disabled={pairs.length < 16} value="matchUps">Match-Ups</Tabs.Tab>
+          <Tabs.Tab disabled={pairs.length < 16} value="standings">Standings</Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="pairs">

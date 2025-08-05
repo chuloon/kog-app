@@ -21,7 +21,9 @@ export const PairRow: FC<PairRowProps> = ({ pair, isStandings, index }) => {
     }
 
     const handleDeleteClick = () => {
-        setPairs(pairs.filter(p => p.pairNumber !== pair.pairNumber));
+        const filteredPairs = pairs.filter(p => p.pairNumber !== pair.pairNumber)
+        const updatedPairs = filteredPairs.map((pair, index) => { return { ...pair, pairNumber: index + 1 } });
+        setPairs(updatedPairs);
     }
 
     return (

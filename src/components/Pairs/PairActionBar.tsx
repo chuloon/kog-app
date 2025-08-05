@@ -17,7 +17,7 @@ export const PairActionBar: FC = () => {
         key: 'standings',
         defaultValue: [],
     });
-    const [_, setMatchUps] = useLocalStorage<MatchUp[]>({
+    const [matchUps, setMatchUps] = useLocalStorage<MatchUp[]>({
         key: 'matchUps',
         defaultValue: [],
     });
