@@ -6,4 +6,5 @@ export interface Pair {
     cumulativeWins: number
     hasPaid: boolean
     standing: number
+    notes: string
 }

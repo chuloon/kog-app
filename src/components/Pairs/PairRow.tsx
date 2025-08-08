@@ -1,7 +1,8 @@
-import { Button, Checkbox, Table } from "@mantine/core";
+import { Button, Checkbox, Table, TextInput } from "@mantine/core";
 import { FC, useState } from "react";
 import { Pair } from "./Pair";
 import { useLocalStorage } from "@mantine/hooks";
+import { T } from "vitest/dist/chunks/reporters.d.BFLkQcL6";
 
 interface PairRowProps {
     pair: Pair,
@@ -43,6 +44,17 @@ export const PairRow: FC<PairRowProps> = ({ pair, isStandings, index }) => {
                             <Checkbox
                                 checked={hasPaid}
                                 onChange={(e) => handlePaymentChange(e.currentTarget.checked)}
+                            />
+                        </Table.Td>
+                        <Table.Td>
+                            <TextInput
+                                style={{ width: '50%' }}
+                                value={pair.notes}
+                                onChange={(e) => {
+                                    const updatedPairs = pairs.map(p => p.pairNumber === pair.pairNumber ? { ...p, notes: e.currentTarget.value } : p);
+                                    setPairs(updatedPairs);
+                                }}
+                                placeholder="Notes"
                             />
                         </Table.Td>
                         <Table.Td visibleFrom="sm">

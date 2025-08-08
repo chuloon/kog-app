@@ -18,11 +18,11 @@ export const PairsTable: FC<PairsTableProps> = ({ pairs, isStandings = false }) 
                     <Table.Th>Pair Number</Table.Th>
                     <Table.Th>Player 1</Table.Th>
                     <Table.Th>Player 2</Table.Th>
-
                     {
                         !isStandings ?
                             <>
                                 <Table.Th>Has Paid</Table.Th>
+                                <Table.Th>Notes</Table.Th>
                                 <Table.Th></Table.Th>
                             </> :
                             <>
