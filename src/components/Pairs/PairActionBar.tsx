@@ -41,7 +41,7 @@ export const PairActionBar: FC = () => {
             cumulativePointDiff: 0,
             cumulativeWins: 0,
             hasPaid: false,
-            standing: pairs.length + 1, // Assuming standing is the same as pair number for new pairs
+            standing: pairs.length + 1,
         }
 
         setPairs([...pairs, newPair]);

@@ -3,6 +3,8 @@ import { useLocalStorage } from "@mantine/hooks";
 import { FC } from "react";
 import { MatchUp } from "../MatchUps/MatchUp";
 import { Pair } from "../Pairs/Pair";
+import { MatchUpData } from "@/assets/MatchUpData";
+import { get } from "http";
 
 export const StandingsActionBar: FC = () => {
     const [pairs, setPairs] = useLocalStorage<Pair[]>({
@@ -29,6 +31,12 @@ export const StandingsActionBar: FC = () => {
             cumulativeWins: 0,
         }));
         setPairs(resetPairs);
+    }
+
+    const getMatchUps = () => {
+        const matchUpData = MatchUpData.find(data => data.numberOfPairs === pairs.length)
+        console.log("MatchUpData:", matchUpData);
+        if (matchUpData) setMatchUps(matchUpData.matchUps)
     }
 
     const calculatePairStandings = () => {
@@ -74,9 +82,9 @@ export const StandingsActionBar: FC = () => {
         })
         ))
 
-        setMatchUps([])
         setStandings([]); // Clear standings for the next round
         setIsRoundTwo(true);
+        getMatchUps();
     }
 
     return (
