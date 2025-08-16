@@ -27,7 +27,7 @@ export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
                     value={matchUp.team1Score}
                     onChange={(e) => updateMatchUp(Number(e.currentTarget.value), 'team1Score')}
                     placeholder="Team 1 Score"
-                    disabled={matchUp.pair1 === -1 || matchUp.pair2 === -1}
+                // disabled={matchUp.pair1 === -1 || matchUp.pair2 === -1}
                 />
             </Table.Td>
             <Table.Td>vs</Table.Td>
@@ -38,7 +38,7 @@ export const CourtRow: FC<CourtRowProps> = ({ matchUp }) => {
                     value={matchUp.team2Score}
                     onChange={(e) => updateMatchUp(Number(e.currentTarget.value), 'team2Score')}
                     placeholder="Team 2 Score"
-                    disabled={matchUp.pair3 === -1 || matchUp.pair4 === -1}
+                // disabled={matchUp.pair3 === -1 || matchUp.pair4 === -1}
                 /></Table.Td>
         </Table.Tr>
     )

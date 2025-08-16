@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form"
 import { Pair } from "./Pair"
 import { mockPairs } from "@/assets/mockPairData"
 import { MatchUp } from "../MatchUps/MatchUp"
+import { MatchUpData } from "@/assets/MatchUpData"
 
 export const PairActionBar: FC = () => {
     const [opened, { open, close }] = useDisclosure(false);
-    const { register, handleSubmit, getValues, reset } = useForm()
+    const { register, handleSubmit, getValues, reset, setFocus } = useForm()
     const [pairs, setPairs] = useLocalStorage<Pair[]>({
         key: 'pairs',
         defaultValue: [],
@@ -44,11 +45,16 @@ export const PairActionBar: FC = () => {
         }
 
         setPairs([...pairs, newPair]);
+        setFocus("player1Name"); // Reset focus to the first input
         return newPair; // Optionally return the newly added pair
     }
 
-    const addMockPairs = () => {
-        setPairs(mockPairs)
+    const setMatchUpClick = () => {
+        if (pairs.length >= 16) {
+            const matchUpData = MatchUpData.find(data => data.numberOfPairs === pairs.length)
+            console.log("MatchUpData:", matchUpData);
+            if (matchUpData) setMatchUps(matchUpData.matchUps)
+        }
     }
 
     const resetClick = () => {
@@ -73,7 +79,7 @@ export const PairActionBar: FC = () => {
             <Flex gap="sm">
                 <form onSubmit={handleSubmit(addPairSubmit)}>
                     <Flex gap="sm">
-                        <Button variant='subtle' onClick={addMockPairs}>Add Mock Pairs</Button>
+                        <Button variant='subtle' onClick={setMatchUpClick}>Set Match-Ups</Button>
                         <TextInput {...register("player1Name")} placeholder="Player 1 Name" />
                         <TextInput {...register("player2Name")} placeholder="Player 2 Name" />
                         <Button type='submit' variant="filled">Add New Pair</Button>
