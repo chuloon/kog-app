@@ -90,7 +90,7 @@ export const StandingsActionBar: FC = () => {
     return (
         <Flex justify="flex-end" gap="md">
             <Button variant='filled' onClick={calculatePairStandings}>Calculate</Button>
-            {!isRoundTwo && <Button variant='outline' onClick={startRoundTwo} disabled={pairs.length < 19}>Start Round 2</Button>}
+            {/* {!isRoundTwo && <Button variant='outline' onClick={startRoundTwo} disabled={pairs.length < 19}>Start Round 2</Button>} */}
         </Flex>
     )
 }
